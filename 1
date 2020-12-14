@@ -1,0 +1,22 @@
+from bs4 import BeautifulSoup
+pip install selenium
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import time
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+print ('Aguarde, os jornais estão sendo coletados...')
+tempo_inicial=time.time()
+driver = webdriver.Chrome(executable_path=r'C:\Users\Lucas\Downloads\Projeto Python Ilustre\chromedriver.exe')
+tempo_inicial=time.time()
+driver = webdriver.Chrome(executable_path=r'C:\Users\Lucas\Downloads\Projeto Python Ilustre\chromedriver.exe')
+driver = webdriver.Chrome(chrome_options = chrome_options)
+driver.get('https://supermercadosalvorada.com/ofertas/')
+html = driver.page_source
+soup = BeautifulSoup(html,'html.parser')
+jornal = soup.select('.et_pb_lightbox_image')
+imgjornal = soup.find('span', class_='et_pb_image_wrap')
+jornal_unissul = imgjornal.get('src')
+tempo_final = time.time()
+print(f'Jornal Unissul: {jornal_unissul}')
+print(f'Tempo de coleta: {tempo_final-tempo_inicial:.2f} segundos')
